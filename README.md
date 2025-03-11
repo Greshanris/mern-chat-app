@@ -76,5 +76,17 @@ export default defineConfig({
 
 If everything is working fine, you will see the default vite page with vite logo on top of React logo.
 
+#### Now, let's use DaisyUI with TailwindCSS
+- This is optional, but i like to use it because we don't have to write much utility class names for every element for basic styling.
+- Install DaisyUI using
+```powershell
+npm i -D daisyui@latest
+```
+- Add the following in the ``index.css`` file
+```css
+@plugin "daisyui";
+```
+after the tailwindcss import.
+
 
 
