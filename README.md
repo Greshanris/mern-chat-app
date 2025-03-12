@@ -116,4 +116,9 @@ axiosInstance.get('/').then((res) => {
 ```
 This is how the axios instance is used to make a request to the backend.
 
+##### Zustand
+- It is a global state management library
+- Suppose we need state for Authenticating the user, and we need it in Home page, Profile page, Settings page, and Navbar component. So, instead of passing the state as props to each component, we can use zustand to create a global state and use it in any component.
 
+So, to create a authentication state, we create a folder named "store" inside "src" folder and created a file named ``useAuthStore.js``.
+```
