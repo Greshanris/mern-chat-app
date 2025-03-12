@@ -20,6 +20,21 @@ npm install express mongoose dotenv bcryptjs cookie-parser cloudinary socket.io 
 - changed package.json to run the server using nodemon, using module instead of commonjs in type.
 - changed "dev": "nodemon src/index.js" in package.json
 - Now, all explanation on what i did will be updated soon.
+- After frontend checkAuth request was done, cors error was found, so added cors package and used it in the index.js
+```powershell
+cd backend
+npm i cors
+```
+- added cors in the index.js file
+```javascript
+import cors from 'cors';
+app.use(cors(
+  {
+    origin: "http://localhost:port_number_of_frontend",
+    credentials: true
+  }
+));
+```
 
 ## Documentation will be updated soon regarding what i did
 - The reason being while coding i forgot to note it down and now i am too lazy to go through the code and write it down

@@ -5,8 +5,18 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Settings from './pages/Settings';
 import Profile from './pages/Profile';
+import { useAuthStore } from './store/useAuthStore';
+import { useEffect } from 'react';
 
 const App = () => {
+  const {authUser, checkAuth} = useAuthStore();
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
+
+  console.log({authUser});
+  
   return (
     <div>
 
