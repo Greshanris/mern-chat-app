@@ -88,5 +88,32 @@ npm i -D daisyui@latest
 ```
 after the tailwindcss import.
 
+- Now, you can use the utility classes provided by DaisyUI for basic styling.
+
+### Frontend Development
+- First of all, we should implement ``react-router-dom`` for routing.
+- Wrap the app component in ``main.jsx`` with ``BrowserRouter`` from ``react-router-dom``.
+- Use ``Routes`` and ``Route`` from ``react-router-dom`` to create routes in App.jsx after ``Navbar`` component.
+- Create a ``Navbar`` component in the ``components`` folder.
+- Create a ``pages`` folder and create all component used in ``element={<Component />}`` like ``Home``, ``Login``, ``Signup``, ``Settings``, ``Profile``.
+
+#### Using axios for API calls instead of fetch and zustand for global state management
+##### Axios
+- Install axios and zustand using
+```powershell
+npm i axios zustand
+```
+
+- Then, create a folder named ``lib`` inside ``src``folder and create a file named ``axios.js``.
+- ``axios.js`` will have the axios instance using ``axios.create({})`` with the base url that is backend API url and we would like to send cookies with each request. So, we set ``withCredentials`` to true.
+```javascript
+axiosInstance.get('/').then((res) => {
+    console.log(res.data);
+  }
+  ).catch((err) => {
+    console.log(err);
+  });
+```
+This is how the axios instance is used to make a request to the backend.
 
 
