@@ -35,11 +35,11 @@ const App = () => {
       <Navbar />
 
       <Routes>
-        <Route path="/" element={authUser ? <Home /> : <Navigate to="/login" />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={ authUser ? <Home /> : <Navigate to="/login" /> } /> {/* if user is authenticated, show Home page, else show Login page */}
+        <Route path="/signup" element={authUser ? <Signup /> : <Navigate to="/" /> } /> {/* If user is already authenticated, then user should go to home page */}
         <Route path="/login" element={<Login />} />
         <Route path="/settings" element={<Settings />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={authUser ? <Profile /> : <Navigate to="/login" /> } />
 
       </Routes>
 
