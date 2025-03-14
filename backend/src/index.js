@@ -28,7 +28,7 @@ app.use(cookieParser()); // it will allow us to parse the cookies which will be 
 app.use(cors({
     origin: "http://localhost:5173",
     credentials: true
-}))
+}));
 // first route we have is for the authentication
 // like if user visits "/api/auth", we would like to call authRoutes which is in routes folder
 app.use("/api/auth", authRoutes) // this is for user model and authentication

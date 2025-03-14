@@ -136,4 +136,74 @@ This is how the axios instance is used to make a request to the backend.
 - Suppose we need state for Authenticating the user, and we need it in Home page, Profile page, Settings page, and Navbar component. So, instead of passing the state as props to each component, we can use zustand to create a global state and use it in any component.
 
 So, to create a authentication state, we create a folder named "store" inside "src" folder and created a file named ``useAuthStore.js``.
+```javascript
+import {create} from 'zustand';
+import {axiosInstance} from axios.js; // axios.js where you made an instance of axios using create setting base url and withCredentials to true
+
+// here created a function called useAuthStore and exported it
+export const useAuthStore = create((set)) => ({}) // setter function is used
+// this is the state we would use to authenticate user and store the user details in "authUser" state
+// Simply, we are making a react hook called useAuthStore and exporting it
+// the object we return are:
+{
+  authUser: null,
+  isSigningUp: false,
+  isLoggingUp: false,
+  isUpdatingProfile: false,
+
+  isCheckingAuth: true, // it is intitally true because we are checking if the user is authenticated or not
+
+  // functions to update the state
+  checkAuth: async () => {
+    try {
+      const res = await axiosInstance.get("/auth/check") // we are sending a get request to /auth/check to check if the user is authenticated or not
+      // the /auth/check route has already been created in the backend in auth.route.js using middleware protectRoute that checks whether the user has the token or not and comparing it with the token in the cookie or expired or not
+
+      // Here, we set the authUser value from the response which is in data key
+      set({authUser: res.data})
+    } catch (error) {
+      // if there is an error or the no authentication
+      set({authUser:res.data});
+      // then logged the error
+      console.log("Error in checkAuth:", error);
+    } finally {
+      // finally, we set isCheckingAuth to false
+      set({ isCheckingAuth: false})
+    }
+  }
+}
+```
+
+- Now, we can use this hook in any component to check if the user is authenticated or not.
+
+#### CORS Error handling
+- Here, i got cors error, basically frontend and backend running on different ports could not communicate so i added cors in the backend index.js file.
+```javascript
+app.use(cors({
+  origin: "http://localhost:port_number_of_frontend",
+  credentials: true
+}));
+```
+#### Using useAuthStore in Signup Page and App.jsx
+- we imported the useAuthstore hook in the ``App.jsx`` file
+- now, using this react hook, we first used it to authenticate whenever page loads using ``useEffect`` hook and ``checkAuth`` function from the hook.
+- then, we used the ``isCheckingAuth`` state to show the loading spinner until the authentication is done.
+
+##### To show loading screen, we used the ``lucide-react`` library
+- Install the library using
+```powershell
+cd frontend
+npm i lucide-react
+```
+- Well, 1 moderate serverity vulnerability arised so,
+```powershell
+npm audit fix
+```
+- Then, we imported the Loader component from the library and used it in the App.jsx file to show the loading spinner.
+```javascript
+if (isCheckingAuth && !authUser) return (
+    <div className='flex items-center justify-center h-screen'>
+      <Loader className="size-10 animate-spin" />
+    </div>
+  )
 ```
