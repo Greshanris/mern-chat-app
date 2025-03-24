@@ -226,5 +226,22 @@ if (isCheckingAuth && !authUser) return (
 - The Same thing is done for Signup, because if the user is already logged in, then why do they need to signup again. So, redirected to Home page.
 - For Profile, only the authenticated user is allowed to see th profile page, so we checked the ``authUser`` state and if it is null, then redirected to Login page.
 
+#### Signup Page
+- Now, we will create the Signup Page.
+
+``**Basic Requirements:**`` 
+- We need to create a form with input fields for email, username, password, and confirm password.
+- We need to create a button to submit the form.
+- We need to create a link to navigate to the Login page if the user already has an account.
+- We need to check if the password and confirm password are same or not.
+- We need to check if the email is valid or not.
+- We need to check if the username is valid or not.
+- We need to check if the password is strong or not.
+- We need to show the error message if the email, username, password, or confirm password is invalid.
+- We need to show the error message if the email, username, or password is already taken.
+- We need to show the success message if the user is successfully signed up and redirect them to the Home page.
+- We need to show the loading spinner while the request is being made to the backend.
+- We will also put the "show password" button to show the password in the input field.
+
 
 

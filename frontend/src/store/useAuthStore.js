@@ -1,6 +1,7 @@
 // store for authentication
 import {create} from "zustand";
 import { axiosInstance } from "../lib/axios.js";
+import { signup } from "../../../backend/src/controllers/auth.controller.js";
 
 // calling create function that takes an callback function as first argument where we would like to return an object which would be our initial state.
 // we would we using setter function as first parameter in the callback function
@@ -39,5 +40,10 @@ export const useAuthStore = create((set) => ({
             // finally always runs, so we will set isCheckingAuth to false
             set({ isCheckingAuth: false});
         }
+    },
+
+    // just like, checkAuth, we will have a function called signup
+    signup: async (data) => {
+        
     }
 }))
