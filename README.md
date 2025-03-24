@@ -207,4 +207,24 @@ if (isCheckingAuth && !authUser) return (
     </div>
   )
 ```
+- Now, the Loading spinner is completed by checking it ``isCheckingAuth``state is true and ``authUser`` state is true, then showing the Loading spinner.
+
+- Now, loadig is completed. So, we will go to the ``<Routes>`` component and make the some changes
+```javascript
+<Routes>
+  <Route path="/" element={ authUser ? <Home /> : <Navigate to="/login" /> } /> {/* if user is authenticated, show Home page, else show Login page */}
+  <Route path="/signup" element={authUser ? <Signup /> : <Navigate to="/" /> } /> {/* If user is already authenticated, then user should go to home page */}
+  <Route path="/login" element={<Login />} />
+  <Route path="/settings" element={<Settings />} />
+  <Route path="/profile" element={authUser ? <Profile /> : <Navigate to="/login" /> } />
+
+</Routes>
+```
+**Explanation:**
+- So, if the user is authenticated, then we can show the Home page, else we need to check the using ``authUser`` state which is null or not. If null, then surely, user is not authenticated, so we can redirect to Login page.
+- If user is authenticated, then, we can show the Home page.
+- The Same thing is done for Signup, because if the user is already logged in, then why do they need to signup again. So, redirected to Home page.
+- For Profile, only the authenticated user is allowed to see th profile page, so we checked the ``authUser`` state and if it is null, then redirected to Login page.
+
+
 
