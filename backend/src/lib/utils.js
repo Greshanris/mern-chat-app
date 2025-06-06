@@ -7,8 +7,8 @@ export const generateToken = (userId, res) => {
     // first argument is payload, second argument is secret or private key which can we grab from environment variable
     // third argument is an object
     // this is how we create a token
-    const token = jwt.sign({userId}, process.env.JWT_SECRET, {
-        expiresIn:"7d"
+    const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
+        expiresIn:"7d",
     })
 
     // Now we need to send this token to cookies
@@ -18,8 +18,8 @@ export const generateToken = (userId, res) => {
     res.cookie("jwt", token, {
         maxAge: 7 * 24 * 60 * 60 * 1000, // it is in millisecond
         httpOnly: true, // prevent XSS attacks cross-site scripting attacks, this token is not accessible by javascript
-        sameSite: "strict", // CSRF attacks cross-site request forgery attacks
-        secure: process.env.NODE_ENV !=="development" // it is basically giving access to as http or https, right now we are in development so just put it in .env file
+        sameSite: "lax", // CSRF attacks cross-site request forgery attacks
+        secure: process.env.NODE_ENV !=="development", // it is basically giving access to as http or https, right now we are in development so just put it in .env file
     });
 
     return token;

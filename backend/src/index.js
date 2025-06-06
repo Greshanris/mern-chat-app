@@ -27,7 +27,7 @@ app.use(express.json()) // allow us to extract the json data out of body
 app.use(cookieParser()); // it will allow us to parse the cookies which will be needed in the auth.middleware.js
 app.use(cors({
     origin: "http://localhost:5173",
-    credentials: true
+    credentials: true,
 }));
 // first route we have is for the authentication
 // like if user visits "/api/auth", we would like to call authRoutes which is in routes folder

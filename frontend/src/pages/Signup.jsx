@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BotMessageSquare } from 'lucide-react';
+import { useAuthStore } from "../store/useAuthStore";
 
 const Signup = () => {
   // setting the state for show password button
@@ -18,7 +19,10 @@ const Signup = () => {
 
   // now, we need a function to validate the form
   // like, for example, if user even misses a single field, we should show an error message
-  const validateForm = () => { };
+  const validateForm = () => {
+    // fullname is required
+    // email is required
+   };
   // now, we need a function to handle the form submission
   const handleSubmit = (e) => {
     // to prevent the default behaviour of form submission so that it does not refreshes the page.
@@ -30,12 +34,14 @@ const Signup = () => {
       {/* left hand side of the form */}
       <div className="flex flex-col justify-center items-center p-6 sm:p-12">
         <div className="w-full max-w-md space-y-8">
+
           {/* now, here will be logo, but i will be importing it from lucide-react */}
           <BotMessageSquare className="size-6 text-primary" />
 
           {/* form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Inputs */}
+            <div className="relative">
             <fieldset className="fieldset w-xs bg-base-200 border border-base-300 p-4 rounded-box">
               <legend className="fieldset-legend">Signup</legend>
 
@@ -46,8 +52,8 @@ const Signup = () => {
               type="text" 
               className="input input-bordered w-full pl-10" 
               placeholder="Rishav Chaudhary" 
-              value={formData.email} 
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              value={formData.fullName} 
+              onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
               />
 
               {/* Email label and Input */}
@@ -85,6 +91,7 @@ const Signup = () => {
 
               <button className="btn btn-neutral mt-4">SignUp</button>
             </fieldset>
+            </div>
           </form>
         </div>
       </div>
